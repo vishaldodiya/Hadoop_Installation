@@ -48,6 +48,17 @@ echo "export HADOOP_HOME=/home/user/ hadoop-2.7.3" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/sbin" >> .bashrc
 
+#Defining Environmental variable in Hadoop side
 
+echo "#Environmental variable for Hadoop" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+echo "export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true" >> $HADOOP_HOME/etc/hadoop/hadoop-env.shows
+echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+ubuntu_version=$(uname -i)
+
+if test $ubuntu_version -e "x86_64"
+then
+    
+fi
 
 #echo $installed;
