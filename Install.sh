@@ -82,4 +82,24 @@ fi
 
 sudo sed -i -e 's/127.0.1.1/127.0.0.1/g' /etc/hosts
 
+#Configuring Hadoop for Psuedo-Distributed Mode
+
+echo "<configuration>
+        <property>
+            <name>dfs.replication</name>
+            <value>1</value>
+        </property>
+    </configuration>" >> etc/hadoop/hdfs-site.xml
+
+echo "<configuration>
+        <property>
+            <name>fs.defaultFS</name>
+            <value>hdfs://localhost:9000</value>
+        </property>
+        <property>
+            <name>hadoop.tmp.dir</name>
+            <value>/tmp</value>
+            <description>A base for other temporary directories.</description>
+        </property>
+    </configuration>" >> etc/hadoop/core-site.xml
 #echo $installed;
