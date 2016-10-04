@@ -1,5 +1,6 @@
 #!/bin/bash
 
+uname=$(whoami)
 installed1=$(apt-cache policy default-jdk | grep "Installed" | awk -F' ' '{print $2}')
 
 #JDK Installation Check Up
@@ -44,7 +45,7 @@ tar -zxvf hadoop-2.7.3.tar.gz
 
 echo "#Environmental variable for Hadoop setup" >> .bashrc
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
-echo "export HADOOP_HOME=/home/user/ hadoop-2.7.3" >> .bashrc
+echo "export HADOOP_HOME=/home/$uname/ hadoop-2.7.3" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/sbin" >> .bashrc
 
@@ -58,7 +59,23 @@ ubuntu_version=$(uname -i)
 
 if test $ubuntu_version -e "x86_64"
 then
-    
+    echo "export HADOOP_INSTALL=/home/$uname/hadoop-2.5.0" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export PATH=$PATH:$HADOOP_INSTALL/bin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export PATH=$PATH:$HADOOP_INSTALL/sbin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export HADOOP_MAPRED_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export HADOOP_COMMON_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export HADOOP_HDFS_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export YARN_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+
+    echo "export HADOOP_OPTS='-Djava.library.path=$HADOOP_INSTALL/lib'" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 fi
 
 #echo $installed;
