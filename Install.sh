@@ -78,4 +78,8 @@ then
     echo "export HADOOP_OPTS='-Djava.library.path=$HADOOP_INSTALL/lib'" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 fi
 
+#Changing Localhost address
+
+sudo sed -i -e 's/127.0.1.1/127.0.0.1/g' /etc/hosts
+
 #echo $installed;
