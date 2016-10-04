@@ -1,6 +1,7 @@
 #!/bin/bash
 
 uname=$(whoami)
+hadoop_version="hadoop-2.7.3"
 installed1=$(apt-cache policy default-jdk | grep "Installed" | awk -F' ' '{print $2}')
 
 #JDK Installation Check Up
@@ -37,7 +38,7 @@ cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorised_keys
 
 #Downoading Hadoop 
 cd ~
-wget -c http://mirror.symnds.com/software/Apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
+wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
 tar -zxvf hadoop-2.7.3.tar.gz
 
 
@@ -45,7 +46,7 @@ tar -zxvf hadoop-2.7.3.tar.gz
 
 echo "#Environmental variable for Hadoop setup" >> .bashrc
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
-echo "export HADOOP_HOME=/home/$uname/ hadoop-2.7.3" >> .bashrc
+echo "export HADOOP_HOME=/home/$uname/$hadoop_version" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/sbin" >> .bashrc
 
@@ -59,7 +60,7 @@ ubuntu_version=$(uname -i)
 
 if test $ubuntu_version -e "x86_64"
 then
-    echo "export HADOOP_INSTALL=/home/$uname/hadoop-2.5.0" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_INSTALL=/home/$uname/$hadoop_version" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
     echo "export PATH=$PATH:$HADOOP_INSTALL/bin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
@@ -89,7 +90,7 @@ echo "<configuration>
             <name>dfs.replication</name>
             <value>1</value>
         </property>
-    </configuration>" >> etc/hadoop/hdfs-site.xml
+    </configuration>" >> /etc/hadoop/hdfs-site.xml
 
 echo "<configuration>
         <property>
@@ -101,5 +102,20 @@ echo "<configuration>
             <value>/tmp</value>
             <description>A base for other temporary directories.</description>
         </property>
-    </configuration>" >> etc/hadoop/core-site.xml
+    </configuration>" >> /etc/hadoop/core-site.xml
+
+#Creatimg Temp file for Hadoop
+
+mkdir /home/$uname/$hadoop_version/temp
+
+#This may not be needed for newer version
+
+echo "<configuration>
+        <property>
+            <name>mapred.job.tracker</name>
+            <value>localhost:9001</value>
+        </property>
+    </configuration>" >> /etc/hadoop/mapred-site.xml
+
+    
 #echo $installed;
