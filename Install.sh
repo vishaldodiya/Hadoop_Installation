@@ -12,6 +12,8 @@ else
         echo "JDK Installed"
 fi
 
+#Installing SSH for running Hadoop in Psuedo-Distributed Mode
+
 
 
 #echo $installed;
