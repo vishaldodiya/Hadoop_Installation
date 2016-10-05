@@ -46,9 +46,11 @@ cd ~
 
 echo "#Environmental variable for Hadoop setup" >> .bashrc
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
-echo "export HADOOP_HOME=/home/".$uname/$hadoop_version >> .bashrc
+echo "export HADOOP_HOME=/home/$uname/$hadoop_version" >> .bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/bin' >> .bashrc
-echo 'export PATH=$PATH.:$HADOOP_HOME/sbin' >> .bashrc
+echo 'export PATH=$PATH:$HADOOP_HOME/sbin' >> .bashrc
+
+source ~/.bashrc
 
 #Defining Environmental variable in Hadoop side
 
