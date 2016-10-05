@@ -129,6 +129,7 @@ else
     </configuration>" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
 fi
 
+echo "Done Installation"
 
 
     
