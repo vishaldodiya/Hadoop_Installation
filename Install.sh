@@ -47,8 +47,8 @@ cd ~
 echo "#Environmental variable for Hadoop setup" >> .bashrc
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
 echo "export HADOOP_HOME=/home/".$uname/$hadoop_version >> .bashrc
-echo "export PATH=".$PATH.":".$HADOOP_HOME."/bin" >> .bashrc
-echo "export PATH=".$PATH.":".$HADOOP_HOME."/sbin" >> .bashrc
+echo 'export PATH=$PATH:$HADOOP_HOME/bin' >> .bashrc
+echo 'export PATH=$PATH.:$HADOOP_HOME/sbin' >> .bashrc
 
 #Defining Environmental variable in Hadoop side
 
@@ -62,21 +62,21 @@ if test $ubuntu_version -e "x86_64"
 then
     echo "export HADOOP_INSTALL=/home/".$uname/$hadoop_version."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export PATH=".$PATH.":".$HADOOP_INSTALL."/bin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export PATH=$PATH:$HADOOP_INSTALL/bin' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export PATH=".$PATH.":".$HADOOP_INSTALL."/sbin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export PATH=$PATH:$HADOOP_INSTALL/sbin' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_MAPRED_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export HADOOP_MAPRED_HOME=$HADOOP_INSTALL' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_COMMON_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export HADOOP_COMMON_HOME=$HADOOP_INSTALL' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_HDFS_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export HADOOP_HDFS_HOME=$HADOOP_INSTALL' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export YARN_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export YARN_HOME=$HADOOP_INSTALL' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_COMMON_LIB_NATIVE_DIR=".$HADOOP_INSTALL."/lib/native" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_OPTS='-Djava.library.path=".$HADOOP_INSTALL."/lib'" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo 'export HADOOP_OPTS=-Djava.library.path=$HADOOP_INSTALL/lib' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 fi
 
 #Changing Localhost address
