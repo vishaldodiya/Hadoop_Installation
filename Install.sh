@@ -39,4 +39,14 @@ cd ~
 wget -c http://mirror.symnds.com/software/Apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 tar -zxvf hadoop-2.7.3.tar.gz
 
+
+#Defining Environmental variable in .bashrc file
+
+echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
+echo "export HADOOP_HOME=/home/user/ hadoop-2.7.3" >> .bashrc
+echo "export PATH=$PATH:$HADOOP_HOME/bin" >> .bashrc
+echo "export PATH=$PATH:$HADOOP_HOME/sbin" >> .bashrc
+
+
+
 #echo $installed;
