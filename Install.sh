@@ -55,12 +55,12 @@ bash
 #Defining Environmental variable in Hadoop side
 
 echo "#Environmental variable for Hadoop" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-echo "export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true" >> $HADOOP_HOME/etc/hadoop/hadoop-env.shows
+echo "export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
 ubuntu_version=$(uname -i)
 
-if test $ubuntu_version -eq "x86_64"
+if test $ubuntu_version = "x86_64";
 then
     echo "export HADOOP_INSTALL=/home/".$uname/$hadoop_version."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
@@ -112,7 +112,7 @@ echo "<configuration>\
 
 #This may not be needed for newer version
 
-if test $ubuntu_version -eq "x86_64"
+if test $ubuntu_version = "x86_64";
 then
     echo "<configuration>\
         <property>\
