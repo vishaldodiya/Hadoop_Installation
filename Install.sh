@@ -50,7 +50,7 @@ echo "export HADOOP_HOME=/home/$uname/$hadoop_version" >> .bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/bin' >> .bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/sbin' >> .bashrc
 
-source ~/.bashrc
+bash
 
 #Defining Environmental variable in Hadoop side
 
@@ -60,7 +60,7 @@ echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> $HADOOP_HOME/etc/hadoop/had
 
 ubuntu_version=$(uname -i)
 
-if test $ubuntu_version -e "x86_64"
+if test $ubuntu_version -eq "x86_64"
 then
     echo "export HADOOP_INSTALL=/home/".$uname/$hadoop_version."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
