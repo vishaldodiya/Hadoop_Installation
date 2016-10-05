@@ -87,37 +87,49 @@ sudo sed -i -e 's/127.0.1.1/127.0.0.1/g' /etc/hosts
 
 #Configuring Hadoop for Psuedo-Distributed Mode
 
-echo "<configuration>
-        <property>
-            <name>dfs.replication</name>
-            <value>1</value>
-        </property>
+echo "<configuration>\
+        <property>\
+            <name>dfs.replication</name>\
+            <value>1</value>\
+        </property>\
     </configuration>" >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 
-echo "<configuration>
-        <property>
-            <name>fs.defaultFS</name>
-            <value>hdfs://localhost:9000</value>
-        </property>
-        <property>
-            <name>hadoop.tmp.dir</name>
-            <value>/tmp</value>
-            <description>A base for other temporary directories.</description>
-        </property>
+echo "<configuration>\
+        <property>\
+            <name>fs.defaultFS</name>\
+            <value>hdfs://localhost:9000</value>\
+        </property>\
+        <property>\
+            <name>hadoop.tmp.dir</name>\
+            <value>/tmp</value>\
+            <description>A base for other temporary directories.</description>\
+        </property>\
     </configuration>" >> $HADOOP_HOME/etc/hadoop/core-site.xml
 
 #Creatimg Temp file for Hadoop
 
-mkdir /home/$uname/$hadoop_version/temp
+#mkdir /home/$uname/$hadoop_version/temp
 
 #This may not be needed for newer version
 
-echo "<configuration>
-        <property>
-            <name>mapred.job.tracker</name>
-            <value>localhost:9001</value>
-        </property>
+if test $ubuntu_version -eq "x86_64"
+then
+    echo "<configuration>\
+        <property>\
+            <name>mapred.job.tracker</name>\
+            <value>localhost:9001</value>\
+        </property>\
+    </configuration>" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
+else
+    echo "<configuration>\
+        <property>\
+            <name>mapred.job.tracker</name>\
+            <value>localhost:9001</value>\
+        </property>\
     </configuration>" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
+fi
+
+
 
     
 #echo $installed;
