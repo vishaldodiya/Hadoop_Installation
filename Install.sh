@@ -23,6 +23,6 @@ else
         sudo apt-get install ssh
         sudo apt-get install rsync
         echo "SSH & rsync are Installed"
-
+fi
 
 #echo $installed;
