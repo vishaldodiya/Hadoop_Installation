@@ -50,7 +50,7 @@ echo "export HADOOP_HOME=/home/$uname/$hadoop_version" >> .bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/bin' >> .bashrc
 echo 'export PATH=$PATH:$HADOOP_HOME/sbin' >> .bashrc
 
-bash
+. ~/.bashrc
 
 #Defining Environmental variable in Hadoop side
 
