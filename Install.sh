@@ -42,6 +42,7 @@ tar -zxvf hadoop-2.7.3.tar.gz
 
 #Defining Environmental variable in .bashrc file
 
+echo "#Environmental variable for Hadoop setup" >> .bashrc
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
 echo "export HADOOP_HOME=/home/user/ hadoop-2.7.3" >> .bashrc
 echo "export PATH=$PATH:$HADOOP_HOME/bin" >> .bashrc
