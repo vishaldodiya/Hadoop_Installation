@@ -90,7 +90,7 @@ echo "<configuration>
             <name>dfs.replication</name>
             <value>1</value>
         </property>
-    </configuration>" >> home/$uname/$hadoop_version/etc/hadoop/hdfs-site.xml
+    </configuration>" >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 
 echo "<configuration>
         <property>
@@ -102,7 +102,7 @@ echo "<configuration>
             <value>/tmp</value>
             <description>A base for other temporary directories.</description>
         </property>
-    </configuration>" >> home/$uname/$hadoop_version/etc/hadoop/core-site.xml
+    </configuration>" >> $HADOOP_HOME/etc/hadoop/core-site.xml
 
 #Creatimg Temp file for Hadoop
 
@@ -115,7 +115,7 @@ echo "<configuration>
             <name>mapred.job.tracker</name>
             <value>localhost:9001</value>
         </property>
-    </configuration>" >> home/$uname/$hadoop_version/etc/hadoop/mapred-site.xml
+    </configuration>" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
 
     
 #echo $installed;
