@@ -38,17 +38,17 @@ cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorised_keys
 
 #Downoading Hadoop 
 cd ~
-wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
-tar -zxvf hadoop-2.7.3.tar.gz
+#wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
+#tar -zxvf hadoop-2.7.3.tar.gz
 
 
 #Defining Environmental variable in .bashrc file
 
 echo "#Environmental variable for Hadoop setup" >> .bashrc
 echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
-echo "export HADOOP_HOME=/home/$uname/$hadoop_version" >> .bashrc
-echo "export PATH=$PATH:$HADOOP_HOME/bin" >> .bashrc
-echo "export PATH=$PATH:$HADOOP_HOME/sbin" >> .bashrc
+echo "export HADOOP_HOME=/home/".$uname/$hadoop_version >> .bashrc
+echo "export PATH=".$PATH.":".$HADOOP_HOME."/bin" >> .bashrc
+echo "export PATH=".$PATH.":".$HADOOP_HOME."/sbin" >> .bashrc
 
 #Defining Environmental variable in Hadoop side
 
@@ -60,23 +60,23 @@ ubuntu_version=$(uname -i)
 
 if test $ubuntu_version -e "x86_64"
 then
-    echo "export HADOOP_INSTALL=/home/$uname/$hadoop_version" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_INSTALL=/home/".$uname/$hadoop_version."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export PATH=$PATH:$HADOOP_INSTALL/bin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export PATH=".$PATH.":".$HADOOP_INSTALL."/bin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export PATH=$PATH:$HADOOP_INSTALL/sbin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export PATH=".$PATH.":".$HADOOP_INSTALL."/sbin" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_MAPRED_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_MAPRED_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_COMMON_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_COMMON_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_HDFS_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_HDFS_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export YARN_HOME=$HADOOP_INSTALL" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export YARN_HOME=".$HADOOP_INSTALL."" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_COMMON_LIB_NATIVE_DIR=".$HADOOP_INSTALL."/lib/native" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    echo "export HADOOP_OPTS='-Djava.library.path=$HADOOP_INSTALL/lib'" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+    echo "export HADOOP_OPTS='-Djava.library.path=".$HADOOP_INSTALL."/lib'" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 fi
 
 #Changing Localhost address
@@ -90,7 +90,7 @@ echo "<configuration>
             <name>dfs.replication</name>
             <value>1</value>
         </property>
-    </configuration>" >> /etc/hadoop/hdfs-site.xml
+    </configuration>" >> home/$uname/$hadoop_version/etc/hadoop/hdfs-site.xml
 
 echo "<configuration>
         <property>
@@ -102,7 +102,7 @@ echo "<configuration>
             <value>/tmp</value>
             <description>A base for other temporary directories.</description>
         </property>
-    </configuration>" >> /etc/hadoop/core-site.xml
+    </configuration>" >> home/$uname/$hadoop_version/etc/hadoop/core-site.xml
 
 #Creatimg Temp file for Hadoop
 
@@ -115,7 +115,7 @@ echo "<configuration>
             <name>mapred.job.tracker</name>
             <value>localhost:9001</value>
         </property>
-    </configuration>" >> /etc/hadoop/mapred-site.xml
+    </configuration>" >> home/$uname/$hadoop_version/etc/hadoop/mapred-site.xml
 
     
 #echo $installed;
