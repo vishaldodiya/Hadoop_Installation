@@ -45,7 +45,7 @@ cd ~
 #Defining Environmental variable in .bashrc file
 if grep -Fxq "#Environmental variable for Hadoop setup" .bashrc
 then
-
+	echo "already Written"		
 else
     echo "#Environmental variable for Hadoop setup" >> .bashrc
     echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> .bashrc
@@ -58,15 +58,17 @@ fi
 
 #Defining Environmental variable in Hadoop side
 
+ubuntu_version=$(uname -i)
+
 if grep -Fxq "#Environmental variable for Hadoop setup" .bashrc
 then
-
+	echo "alresy written"
 else
     echo "#Environmental variable for Hadoop" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
     echo "export HADOOP_OPTS=-Djava.net.preferIPv4Stack=true" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
     echo "export JAVA_HOME=/usr/lib/jvm/default-java" >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-    ubuntu_version=$(uname -i)
+    
 
     if test $ubuntu_version = "x86_64";
     then
@@ -98,34 +100,34 @@ sudo sed -i -e 's/127.0.1.1/127.0.0.1/g' /etc/hosts
 
 if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 then
-
+	echo "alresy written"
 else
     echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml    
-    echo "<configuration>\
-            <property>\
-                <name>dfs.replication</name>\
-                <value>1</value>\
-            </property>\
+    echo "<configuration>\n
+            <property>\n
+                <name>dfs.replication</name>\n
+                <value>1</value>\n
+            </property>\n
         </configuration>" >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 fi
 
 if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/core-site.xml
 then
-
+	echo "already written"
 else
     echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/core-site.xml
-    echo "<configuration>\
-            <property>\
-                <name>fs.defaultFS</name>\
-                <value>hdfs://localhost:9000</value>\
-            </property>\
-            <property>\
-                <name>hadoop.tmp.dir</name>\
-                <value>/tmp</value>\
-                <description>A base for other temporary directories.</description>\
-            </property>\
+    echo "<configuration>\n
+            <property>\n
+                <name>fs.defaultFS</name>\n
+                <value>hdfs://localhost:9000</value>\n
+            </property>\n
+            <property>\n
+                <name>hadoop.tmp.dir</name>\n
+                <value>/tmp</value>\n
+                <description>A base for other temporary directories.</description>\n
+            </property>\n
         </configuration>" >> $HADOOP_HOME/etc/hadoop/core-site.xml
-
+fi
 #Creatimg Temp file for Hadoop
 
 #mkdir /home/$uname/$hadoop_version/temp
@@ -137,28 +139,28 @@ if test $ubuntu_version = "x86_64";
 then
     if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
     then
-
+	echo "alredy written"
     else
         echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
-        echo "<configuration>\
-                <property>\
-                    <name>mapred.job.tracker</name>\
-                    <value>localhost:9001</value>\
-                </property>\
+        echo "<configuration>\n
+                <property>\n
+                    <name>mapred.job.tracker</name>\n
+                    <value>localhost:9001</value>\n
+                </property>\n
             </configuration>" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
     fi
     
 else
     if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/mapred-site.xml
     then
-
+	echo "alredy written"
     else
         echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
-        echo "<configuration>\
-                <property>\
-                    <name>mapred.job.tracker</name>\
-                    <value>localhost:9001</value>\
-                </property>\
+        echo "<configuration>\n
+                <property>\n
+                    <name>mapred.job.tracker</name>\n
+                    <value>localhost:9001</value>\n
+                </property>\n
             </configuration>" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
     fi
     
