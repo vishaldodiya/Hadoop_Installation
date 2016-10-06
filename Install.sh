@@ -38,8 +38,8 @@ cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorised_keys
 
 #Downoading Hadoop 
 cd ~
-#wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
-#tar -zxvf hadoop-2.7.3.tar.gz
+wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
+tar -zxvf hadoop-2.7.3.tar.gz
 
 
 #Defining Environmental variable in .bashrc file
@@ -130,7 +130,7 @@ else
 fi
 #Creatimg Temp file for Hadoop
 
-#mkdir /home/$uname/$hadoop_version/temp
+mkdir /home/$uname/$hadoop_version/temp
 
 #This may not be needed for newer version
 
