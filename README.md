@@ -1,4 +1,4 @@
-# Hadoop_Installationa
+# Hadoop_Installation
 
 Easy Installation of Hadoop In Ubuntu with any typeing any command or without setting any environmental variable in .bashrc files etc.And easy to install
 
