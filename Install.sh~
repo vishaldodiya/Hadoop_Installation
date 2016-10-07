@@ -102,8 +102,6 @@ if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 then
 	echo "alresy written"
 else
-    #sudo sed -i -e 's/</#/g' $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-    #sudo sed -i -e 's/</#/g' $HADOOP_HOME/etc/hadoop/hdfs-site.xml
     echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml    
     echo "<configuration>\n
             <property>\n
@@ -117,8 +115,6 @@ if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/core-site.xml
 then
 	echo "already written"
 else
-    #sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/core-site.xml
-    #sudo sed -i -e 's/</configuration>/#/g' $HADOOP_HOME/etc/hadoop/core-site.xml
     echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/core-site.xml
     echo "<configuration>\n
             <property>\n
@@ -143,10 +139,8 @@ if test $ubuntu_version = "x86_64";
 then
     if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
     then
-	    echo "alredy written"
+	echo "alredy written"
     else
-        #sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
-        #sudo sed -i -e 's/</configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
         echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
         echo "<configuration>\n
                 <property>\n
@@ -159,10 +153,8 @@ then
 else
     if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/mapred-site.xml
     then
-	    echo "alredy written"
+	echo "alredy written"
     else
-        #sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml
-        #sudo sed -i -e 's/</configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml
         echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
         echo "<configuration>\n
                 <property>\n
