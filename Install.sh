@@ -38,8 +38,8 @@ cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorised_keys
 
 #Downoading Hadoop 
 cd ~
-#wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
-#tar -zxvf hadoop-2.7.3.tar.gz
+wget -c http://mirror.symnds.com/software/Apache/hadoop/common/$hadoop_version/$hadoop_version.tar.gz
+tar -zxvf hadoop-2.7.3.tar.gz
 
 
 #Defining Environmental variable in .bashrc file
@@ -59,6 +59,8 @@ fi
 #Defining Environmental variable in Hadoop side
 
 ubuntu_version=$(uname -i)
+config='<configuration>'
+config_='</configuration>'
 
 if grep -Fxq "#Environmental variable for Hadoop" $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 then
@@ -102,8 +104,9 @@ if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 then
 	echo "alresy written"
 else
-    #sudo sed -i -e 's/</#/g' $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-    #sudo sed -i -e 's/</#/g' $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+    sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+    sudo sed -i -e 's/<\/configuration>/#/g' $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+    
     echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml    
     echo "<configuration>\n
             <property>\n
@@ -117,8 +120,9 @@ if grep -Fxq "<!-- Hadoop edit -->" $HADOOP_HOME/etc/hadoop/core-site.xml
 then
 	echo "already written"
 else
-    #sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/core-site.xml
-    #sudo sed -i -e 's/</configuration>/#/g' $HADOOP_HOME/etc/hadoop/core-site.xml
+    sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/core-site.xml
+    sudo sed -i -e 's/<\/configuration>/#/g' $HADOOP_HOME/etc/hadoop/core-site.xml
+    
     echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/core-site.xml
     echo "<configuration>\n
             <property>\n
@@ -145,8 +149,9 @@ then
     then
 	    echo "alredy written"
     else
-        #sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
-        #sudo sed -i -e 's/</configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
+        sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
+        sudo sed -i -e 's/<\/configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
+        
         echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml.template
         echo "<configuration>\n
                 <property>\n
@@ -161,8 +166,8 @@ else
     then
 	    echo "alredy written"
     else
-        #sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml
-        #sudo sed -i -e 's/</configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml
+        sudo sed -i -e 's/<configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml
+        sudo sed -i -e 's/<\/configuration>/#/g' $HADOOP_HOME/etc/hadoop/mapred-site.xml
         echo "<!-- Hadoop edit -->" >> $HADOOP_HOME/etc/hadoop/mapred-site.xml
         echo "<configuration>\n
                 <property>\n
