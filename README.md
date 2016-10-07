@@ -39,5 +39,7 @@ if you have downloaded zip then Unzip the folder
 
 Step 3:
 ```
+Run
+$ sh Install.sh
 
 ```
